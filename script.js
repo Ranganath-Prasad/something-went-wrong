@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const clickedElement = event.currentTarget;
         const elementId = clickedElement.getAttribute('id');
-        alert(elementId)
-        openModal()
+        openModal(clickedElement)
 
     }
 
@@ -21,9 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeFooterBtn = document.getElementById('closeModalFooterBtn');
     closeFooterBtn.addEventListener('click', closeModal);
 
-    function openModal() {
-        alert('opening modal')
+    function openModal(anchorElement) {
+        const anchorParent = anchorElement.parentElement;
+        const siblingDev = anchorParent.nextElementSibling;
         modal.classList.remove('hidden');
+ 
+        document.getElementById('modalContent').textContent = siblingDev.outerHTML;
         // Best practice: Add a class to the body to prevent background scrolling
         document.body.classList.add('overflow-hidden');
     }
